@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "./Form";
 
 function App(props) {
@@ -11,7 +11,7 @@ function App(props) {
     setTodos([...todos, newToDo]);
   }
 
-  return (
+  const virtualDOM = (
     <>
       <Form onSubmit={addTodo} />
       {props.todos.length < 1 ? (
@@ -21,6 +21,12 @@ function App(props) {
       )}
     </>
   );
+
+  useEffect(() => {
+    console.log(virtualDOM);
+  }, [virtualDOM]);
+
+  return virtualDOM;
 }
 
 export default App;
